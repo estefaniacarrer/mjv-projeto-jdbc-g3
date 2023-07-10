@@ -39,7 +39,7 @@ public class JDBCApplication {
             professor.setValorHora(65.0);
             professor.setEstrangeiro(false);
             professor.setHorasDisponiveis(5);
-            professor.setBiografia("Professora apaixonado por ensinar e inspirar alunos a alcançarem seu pleno potencial acadêmico e pessoal.");
+            professor.setBiografia("Professor apaixonado por ensinar e inspirar alunos a alcançarem seu pleno potencial acadêmico e pessoal.");
             professor.setDataHoraCadastro(LocalDateTime.now());
             professorCrud.update(professor);
 
