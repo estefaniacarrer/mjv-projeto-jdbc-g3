@@ -6,10 +6,12 @@ import java.util.List;
 
 public class ProfessorCrud {
     private Connection conexao;
-    public ProfessorCrud(){
-       conexao = Conexao.getConnection();
+
+    public ProfessorCrud() {
+        conexao = Conexao.getConnection();
     }
-    public void save (Professor professor){
+
+    public void save(Professor professor) {
         try {
             String sql = "INSERT INTO tab_professor (nome, dataNascimento, cargaHoraria, valorHora,"
                     + " estrangeiro, horasDisponiveis, biografia, dataHoraCadastro)"
@@ -30,11 +32,12 @@ public class ProfessorCrud {
                 System.out.println("Um(a) novo(a) professor(a) foi salvo(a) com sucesso!");
             }
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    public void update(Professor professor){
+
+    public void update(Professor professor) {
         try {
             String sql = "UPDATE tab_professor SET nome = ?, dataNascimento = ?, cargaHoraria = ?," +
                     " valorHora = ?, estrangeiro = ?, horasDisponiveis = ?, biografia = ?, dataHoraCadastro = ?" +
@@ -55,57 +58,60 @@ public class ProfessorCrud {
                 System.out.println("Alteração realizada com sucesso!");
             }
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    public int delete(Integer id){
-        int rowsDeleted=0;
+
+    public int delete(Integer id) {
+        int rowsDeleted = 0;
         try {
             String sql = "DELETE FROM tab_professor WHERE id = ?";
 
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setInt(1, id);
             rowsDeleted = statement.executeUpdate();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return  rowsDeleted;
+        return rowsDeleted;
 
     }
-    public Professor findById(Integer id){
+
+    public Professor findById(Integer id) {
         Professor professor = null;
         try {
             String sql = "SELECT * FROM tab_professor WHERE id = ?";
 
             PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setInt(1,id);
+            statement.setInt(1, id);
 
             ResultSet result = statement.executeQuery();
 
-            while (result.next()){
-               professor = new Professor();
+            while (result.next()) {
+                professor = new Professor();
                 professor.setId(result.getInt("id"));
                 professor.setNome(result.getString("nome"));
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return professor;
     }
-    public List<Professor> findAll(){
+
+    public List<Professor> findAll() {
         List<Professor> registros = new ArrayList<>();
         try {
             String sql = "SELECT * FROM tab_professor";
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
-            while (result.next()){
+            while (result.next()) {
                 Professor professor = new Professor();
                 professor.setId(result.getInt("id"));
                 professor.setNome(result.getString("nome"));
                 registros.add(professor);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return registros;

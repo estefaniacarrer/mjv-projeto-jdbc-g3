@@ -16,5 +16,3 @@ CREATE TABLE public.tab_professor (
     datahoracadastro    TIMESTAMP       NOT NULL,
 	CONSTRAINT tab_professor_pkey PRIMARY KEY (id)
 );
-
---insert into tab_professor (nome) values ('INSTRUTOR');

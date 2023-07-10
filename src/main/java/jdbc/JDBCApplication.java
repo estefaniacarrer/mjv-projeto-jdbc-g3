@@ -7,6 +7,7 @@ import java.util.List;
 
 public class JDBCApplication {
     private static ProfessorCrud professorCrud;
+
     public static void main(String[] args) {
         Conexao.iniciarConexao();
         professorCrud = new ProfessorCrud();
@@ -16,11 +17,11 @@ public class JDBCApplication {
 //        excluirProfessor();
     }
 
-    private static void incluirProfessor(){
-        Professor professor  = new Professor();
-        professor.setNome("Kelly");
-        professor.setDataNascimento(LocalDate.of(1995, 2, 22));
-        professor.setCargaHoraria(LocalTime.of(8,0,0));
+    private static void incluirProfessor() {
+        Professor professor = new Professor();
+        professor.setNome("Eloisa");
+        professor.setDataNascimento(LocalDate.of(1985, 10, 20));
+        professor.setCargaHoraria(LocalTime.of(8, 0, 0));
         professor.setValorHora(85.0);
         professor.setEstrangeiro(true);
         professor.setHorasDisponiveis(20);
@@ -28,26 +29,38 @@ public class JDBCApplication {
         professor.setDataHoraCadastro(LocalDateTime.now());
         professorCrud.save(professor);
     }
-//    private static void alterarProfessor(){
-//        Professor professor  = professorCrud.findById(1);
-//        if(professor!=null){
-//            professor.setCargaHoraria(LocalTime.of(10,0,0));
-//            professor.setValorHora(65.0);
-//            professor.setHorasDisponiveis(10);
-//            professorCrud.update(professor);
-//        }else {
-//            System.out.println("Não existe o professor com o id informado.");
-//        }
-//    }
-//    private static void listarProfessor(){
-//        List<Professor> professores = professorCrud.findAll();
-//        for(Professor p:professores){
-//            System.out.println(p.getId() + "--" + p.getNome());
-//        }
-//    }
-//    private static void excluirProfessor(){
-//        int linhasDeletas = professorCrud.delete(1);
-//        if(linhasDeletas==0)
-//            System.out.println("Nenhum registro com id informado localizado para a exclusão");
-//    }
+
+    private static void alterarProfessor() {
+        Professor professor = professorCrud.findById(4);
+        if (professor != null) {
+            professor.setNome("Arthur");
+            professor.setDataNascimento(LocalDate.of(1990, 2, 14));
+            professor.setCargaHoraria(LocalTime.of(10, 0, 0));
+            professor.setValorHora(65.0);
+            professor.setEstrangeiro(false);
+            professor.setHorasDisponiveis(5);
+            professor.setBiografia("Professora apaixonado por ensinar e inspirar alunos a alcançarem seu pleno potencial acadêmico e pessoal.");
+            professor.setDataHoraCadastro(LocalDateTime.now());
+            professorCrud.update(professor);
+
+        } else {
+            System.out.println("Não existe o professor com o id informado.");
+        }
+    }
+
+    private static void listarProfessor() {
+        List<Professor> professores = professorCrud.findAll();
+        for (Professor p : professores) {
+            System.out.println(p.getId() + "--" + p.getNome());
+        }
+    }
+
+    private static void excluirProfessor() {
+        int linhasDeletas = professorCrud.delete(4);
+        if (linhasDeletas == 0) {
+            System.out.println("Nenhum registro com id informado localizado para a exclusão");
+        }else{
+            System.out.println("Registro deletado com sucesso!");
+        }
+    }
 }
