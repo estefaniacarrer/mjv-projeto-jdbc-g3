@@ -8,7 +8,7 @@ O uso do JDBC garantirá a conexão com um banco de dados, proporcionando uma in
 O objetivo final é criar um sistema completo e funcional que permita a gestão dos dados, facilitando a organização e manipulação das informações.
 
 ## Diagrama da classe Professor utilizada para o projeto:
-<img src="img/diagrama.png" alt="Diagrama" width="350" height="350">
+<img src="img/diagrama.png" alt="Diagrama" width="250" height="250">
 
 ## Técnologias utilizadas:
 
